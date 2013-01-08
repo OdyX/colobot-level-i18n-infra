@@ -62,7 +62,9 @@ for lang in $linguas; do
 done
 
 for level in $(ls *.txt); do
-	gen_i18n_file $level level
+	if [ "$level" != "CMakeLists.txt" -a "$level" != "install_manifest.txt" -a "$level" != "CMakeCache.txt" ]; then
+		gen_i18n_file $level level
+	fi
 done
 echo "</body></html>" >> level.$common_i18n_ext
 
