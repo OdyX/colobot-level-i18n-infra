@@ -1,0 +1,4 @@
+*.xml
+*.xhtml
+po4a.cfg
+po/*.po~
