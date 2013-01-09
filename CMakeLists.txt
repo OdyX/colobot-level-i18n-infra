@@ -65,32 +65,23 @@ add_custom_command(OUTPUT po4a.cfg
 		)
 
 if(PO4A)
-	#### STEP 4 # Run po4a
+	### STEP 4 # Update PO
+	add_custom_command(OUTPUT update-po-ran
+			   COMMAND po4a-gettextize -M UTF-8 -f xhtml -m common.xhtml > ${CMAKE_CURRENT_SOURCE_DIR}/po/level.pot
+			   COMMAND touch update-po-ran
+			   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/common.xhtml
+			   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+			   COMMENT "Update level.pot from level's common.xhtml file.")
+	add_custom_target(update-po DEPENDS update-po-ran)
+
+	#### STEP 5 # Run po4a
 	add_custom_command(OUTPUT po4a-ran
-			   COMMAND po4a -v po4a.cfg
+			   COMMAND po4a -v -f po4a.cfg
 			   COMMAND touch po4a-ran
-			   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg ${extract_strings_catlist}
+			   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg ${extract_strings_catlist} update-po-ran
 			   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 			   COMMENT "Run po4a to generate the translations out of the xml files")
 	add_custom_target(po4a DEPENDS po4a-ran)
-	
-
-endif()
-
-
-if(PO4A)
-	set(_levels_i18n_target "levels_i18n")
-	add_custom_command(OUTPUT ${_levels_i18n_target}
-		COMMAND mkdir -p ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}
-		COMMAND ./scripts/gen_levels_xml.sh ${CMAKE_CURRENT_SOURCE_DIR}/levels/ ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}
-		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-		COMMENT "Inject level translations"
-		)
-	add_custom_target(translate_levels ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target})
-	install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}/
-		DESTINATION ${COLOBOT_INSTALL_DATA_DIR}/levels
-		PATTERN CMake*.txt EXCLUDE
-		PATTERN install_manifest.txt EXCLUDE)
 else()
 	message(WARNING "po4a not found, levels will not get translated")
 	file(GLOB levelfiles "${CMAKE_CURRENT_SOURCE_DIR}/*.txt")
