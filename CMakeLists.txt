@@ -16,7 +16,7 @@ if(PO4A)
 	set(_levels_i18n_target "levels_i18n")
 	add_custom_command(OUTPUT ${_levels_i18n_target}
 		COMMAND mkdir -p ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}
-		COMMAND ./gen_levels_xml.sh ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}
+		COMMAND ./scripts/gen_levels_xml.sh ${CMAKE_CURRENT_SOURCE_DIR}/levels/ ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 		COMMENT "Inject level translations"
 		)

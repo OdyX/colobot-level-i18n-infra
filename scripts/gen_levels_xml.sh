@@ -2,10 +2,12 @@
 
 set -e
 
-outdir=$1
+srcdir=$1
+outdir=$2
 
-if [ -z "$outdir" ] || [ "$outdir" = "." ] || [ ! -d $outdir ]; then
-	echo "No existing output directory provided; syntax is : $0 output_directory"
+if [ -z "$srcdir" ] || [ "$srcdir" = "." ] || [ ! -d $srcdir ] || \
+   [ -z "$outdir" ] || [ "$outdir" = "." ] || [ ! -d $outdir ]; then
+	echo "No existing input or output directories provided; syntax is : $0 source_directory output_directory"
 	return 1;
 fi
 
@@ -23,7 +25,7 @@ if [ -z "$levelfileorig" ] || [ ! -f $levelfileorig ]; then
 	return 1;
 fi
 
-levelfile=$(echo $levelfileorig | sed -e "s/\.txt$//g")
+levelfile=$(basename $levelfileorig .txt)
 
 destfile=$levelfile.xml;
 allsfile=$common_i18n_file.$common_i18n_ext;
@@ -61,9 +63,9 @@ for lang in $linguas; do
 	echo "<html><body>" > $lang.$common_i18n_ext
 done
 
-for level in $(ls *.txt); do
+for level in $(cd $srcdir/; ls *.txt); do
 	if [ "$level" != "CMakeLists.txt" -a "$level" != "install_manifest.txt" -a "$level" != "CMakeCache.txt" ]; then
-		gen_i18n_file $level level
+		gen_i18n_file $srcdir/$level level
 	fi
 done
 echo "</body></html>" >> level.$common_i18n_ext
@@ -93,11 +95,11 @@ echo "done"
 
 echo -n " 6 - Inject translation in level files: "
 
-for levelfile in $(ls *.txt); do
+for levelfile in $(cd $srcdir; ls *.txt); do
 	# Always start afresh
 	rm -f $outdir/$levelfile
 
-	rootfilename=$(echo $levelfile | sed 's/\.txt$//g')
+	rootfilename=$(basename $levelfile .txt)
 	for lang in $linguas; do
 		dotlang=".$lang"
 		langcode="";
@@ -123,6 +125,6 @@ for levelfile in $(ls *.txt); do
 			done
 		fi
 	done
-	sed -e '/^Title/d;/^Resume/d;/^ScriptName/d' $levelfile >> $outdir/$levelfile
+	sed -e '/^Title/d;/^Resume/d;/^ScriptName/d' $srcdir/$levelfile >> $outdir/$levelfile
 done
 echo "done."
