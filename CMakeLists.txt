@@ -3,9 +3,13 @@ cmake_minimum_required(VERSION 2.8)
 set(LEVEL_CODENAME "scene100")
 set(LEVEL_LONGNAME "Leaving Earth")
 
+project(colobot-level-${LEVEL_CODENAME} NONE)
+
 if(NOT DEFINED COLOBOT_INSTALL_DATA_DIR)
         set(COLOBOT_INSTALL_DATA_DIR ${CMAKE_INSTALL_PREFIX}/share/games/colobot CACHE PATH "Colobot shared data directory")
 endif()
+set(LEVEL_INSTALL_DATA_DIR ${COLOBOT_INSTALL_DATA_DIR}/levels/${LEVEL_CODENAME})
+message(STATUS "Will install '${LEVEL_LONGNAME}' (${LEVEL_CODENAME}) to ${LEVEL_INSTALL_DATA_DIR}")
 
 set(LEVEL_INSTALL_DATA_DIR ${COLOBOT_INSTALL_DATA_DIR}/${LEVEL_CODENAME})
 
