@@ -11,15 +11,16 @@ endif()
 set(LEVEL_INSTALL_DATA_DIR ${COLOBOT_INSTALL_DATA_DIR}/levels/${LEVEL_CODENAME})
 message(STATUS "Will install '${LEVEL_LONGNAME}' (${LEVEL_CODENAME}) to ${LEVEL_INSTALL_DATA_DIR}")
 
+# Translate translatable material
+find_program(PO4A po4a)
 
 #### STEP 1 # Extract strings from level files, create .xml and .part-xhtml files out of them
-
-# Handle translation of level definitions
 file(GLOB levelfiles "${CMAKE_CURRENT_SOURCE_DIR}/levels/*.txt")
+list(SORT levelfiles)
 add_custom_target(extract_strings) # For .xml files
-set(extract_strings_catlist "")
 foreach(levelfile ${levelfiles})
 	get_filename_component(_levelfile_we ${levelfile} NAME_WE)
+	get_filename_component(_levelfile    ${levelfile} NAME)
 	add_custom_command(OUTPUT ${_levelfile_we}.xml ${_levelfile_we}.part-xhtml
 		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/01_extract_strings_to_xml.sh ${levelfile} ${_levelfile_we}.xml ${_levelfile_we}.part-xhtml
 		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
@@ -29,6 +30,22 @@ foreach(levelfile ${levelfiles})
 	add_dependencies(extract_strings extract_strings_${_levelfile_we})
 
 	set(extract_strings_catlist ${extract_strings_catlist} ${_levelfile_we}.part-xhtml)
+	set(extract_strings_po4alist ${extract_strings_po4alist} ${_levelfile_we})
+
+	### STEP 5 # Inject translations in levels
+	set(_levels_i18n_target "levels_i18n")
+	if(PO4A)
+		add_custom_command(OUTPUT ${_levels_i18n_target}/${_levelfile}
+			COMMAND mkdir -p ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}
+			COMMAND ./scripts/05_inject_translations.sh ${levelfile} ${CMAKE_CURRENT_BINARY_DIR}/${_levelfile_we} > ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}/${_levelfile}
+			DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/po4a-ran
+			WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+			COMMENT "Inject translation in ${_levelfile}"
+			)
+		add_custom_target(inject_translation_${_levelfile_we} ALL DEPENDS ${_levels_i18n_target}/${_levelfile})
+		install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}/${_levelfile}
+			DESTINATION ${LEVEL_INSTALL_DATA_DIR})
+	endif()
 endforeach()
 
 #### STEP 2 # Create common XHTML file out of .part-xhtml files
@@ -40,8 +57,26 @@ add_custom_command(OUTPUT common.xhtml
 		)
 add_custom_target(extract_strings_common DEPENDS common.xhtml) # For the common .xhtml file
 
-# Translate translatable material
-find_program(PO4A po4a)
+#### STEP 3 # Create po4a.cfg file out of the list of files
+add_custom_command(OUTPUT po4a.cfg
+		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/03_create_po4a_file.sh ${CMAKE_CURRENT_SOURCE_DIR}/po ${extract_strings_po4alist} > po4a.cfg
+		COMMENT "Create po4a file"
+		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+		)
+
+if(PO4A)
+	#### STEP 4 # Run po4a
+	add_custom_command(OUTPUT po4a-ran
+			   COMMAND po4a -v po4a.cfg
+			   COMMAND touch po4a-ran
+			   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg ${extract_strings_catlist}
+			   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+			   COMMENT "Run po4a to generate the translations out of the xml files")
+	add_custom_target(po4a DEPENDS po4a-ran)
+	
+
+endif()
+
 
 if(PO4A)
 	set(_levels_i18n_target "levels_i18n")
