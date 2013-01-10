@@ -55,7 +55,6 @@ add_custom_command(OUTPUT common.xhtml
 		COMMENT "Create common.xhtml file from partial xhtml files"
 		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 		)
-add_custom_target(extract_strings_common DEPENDS common.xhtml) # For the common .xhtml file
 
 #### STEP 3 # Create po4a.cfg file out of the list of files
 add_custom_command(OUTPUT po4a.cfg
@@ -84,7 +83,6 @@ if(PO4A)
 	add_custom_target(po4a DEPENDS po4a-ran)
 else()
 	message(WARNING "po4a not found, levels will not get translated")
-	file(GLOB levelfiles "${CMAKE_CURRENT_SOURCE_DIR}/*.txt")
-	list(REMOVE_ITEM levelfiles "${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt")
-	install(FILES ${levelfiles} DESTINATION ${COLOBOT_INSTALL_DATA_DIR}/levels/)
+	file(GLOB levelfiles "${CMAKE_CURRENT_SOURCE_DIR}/levels/*.txt")
+	install(FILES ${levelfiles} DESTINATION ${LEVEL_INSTALL_DATA_DIR}/)
 endif()
