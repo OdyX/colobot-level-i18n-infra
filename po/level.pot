@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-08 08:20+0100\n"
+"POT-Creation-Date: 2013-01-10 08:53+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,4 +88,301 @@ msgstr ""
 #: scene103.xml:4
 #, no-wrap
 msgid "scene103:Equip your spaceship and get ready for takeoff."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:3
+msgid ""
+"\\b;From the NASA Training Center We are pleased to inform you that you have "
+"been selected for the space exploration mission Colobot."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:5
+msgid ""
+"Your psychological profile has been established as more than 98.84% "
+"favorable, and your aptitude during the extensive testing period was "
+"undeniable. The detailed results are at your disposal in the central "
+"computer under the registration number that was assigned to you."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:7
+msgid ""
+"Please report to the \\l;Houston Mission Control\\u object\\Huston; for "
+"further directives about your forthcoming mission."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:10
+msgid ""
+"\\b;From Houston Mission Control As you know, Earth is heading towards "
+"imminent disaster, due to increasing atmospheric pollution."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:12
+msgid ""
+"\\l;Your\\u object\\human; mission consists of exploring neighboring "
+"galaxies with the hopes of finding a planet that will be suitable to human "
+"needs and possibly serve as a shelter for mankind. You will be on your own "
+"for the entire mission but your spaceship will be carrying a few bots along."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:14
+msgid ""
+"Eight months ago an expedition composed entirely of robots was sent across "
+"the cosmos with the same objective. It encountered a fair share of obstacles "
+"along the way, apparently landing on planets that were unsuitable for "
+"colonization, even possibly outright hostile. Very recently all "
+"communications were terminated."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:16
+msgid ""
+"The reasons for the mission's failure are unclear at this date, mainly "
+"because of recurrent transmission problems. It is our hope that you will be "
+"able to use some of the data it gathered to your advantage."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:19
+msgid ""
+"\\b;Immediate Objective The Nevada desert is already bustling with "
+"activity. Bots are setting up a space station catered to your specific "
+"needs."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:21
+msgid ""
+"In order to let you familiarize with your spacesuit and equipment, we have "
+"set up a few training drills."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:23
+msgid ""
+"In the first drill, you need to find your survival kit that contains all the "
+"tools necessary to brave the cold of outer space. It is easy to spot since "
+"it contains both an orange and a blue tank."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:25 help/mhterre2.txt:12 help/mhterre3.txt:22
+msgid ""
+"\\key;\\key help;\\norm; allows you to review these instructions at all "
+"times on your personal SatCom \\button 63;."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre1.txt:27 help/mhterre2.txt:14 help/mhterre3.txt:24 help/msterre1.txt:11 help/msterre2.txt:11 help/msterre3.txt:28
+msgid "\\t;See also \\l;Controls\\u command;"
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre2.txt:3
+msgid ""
+"\\b;From Mission Control This is your second drill. \\l;You\\u "
+"object\\human; should now familiarize yourself with the handling of basic "
+"equipment. This could turn out to be your best ally during the course of "
+"this expedition."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre2.txt:5
+msgid ""
+"The construction of buildings and the manufacturing of bots all require the "
+"use of \\l;titanium\\u object\\titan;. Titanium is a mineral found in most "
+"solar systems in the universe."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre2.txt:10
+msgid ""
+"\\b;Procedure 1) Position yourself close to the first \\l;titanium cube\\u "
+"object\\titan;.  2) Build a \\l;research center\\u object\\research; "
+"\\button 163;. Note that only \\l;you\\u object\\human; can accomplish the "
+"task of building; no bot can be substituted.  3) With a second \\l;titanium "
+"cube\\u object\\titan;, build a \\l;bot factory\\u object\\factory; \\button "
+"160;."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre3.txt:3
+msgid ""
+"\\b;From Mission Control Your \\l;spaceship\\u object\\base; is now standing "
+"on the launching pad, ready for takeoff."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre3.txt:5
+msgid ""
+"The last drill left for \\l;you\\u object\\human; to perform before "
+"embarking on your journey is to equip your spaceship with its \\l;black "
+"box\\u object\\bbox;. The only way to reach the \\l;black box\\u "
+"object\\bbox; is by a steep path that can only be climbed by a \\l;tracked "
+"grabber\\u object\\botgc; which you need to build."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre3.txt:7
+msgid ""
+"Unfortunately your \\l;bot factory\\u object\\factory; hasn't yet got the "
+"capacity to assemble this type of bot. You need to request your \\l;research "
+"center\\u object\\research; to come up with a blueprint for this particular "
+"propeller."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre3.txt:17
+msgid ""
+"\\b;Procedure 1) Power the research center with one of the green \\l;power "
+"cells\\u object\\power;.  2) Click on the <tracked bot research program> "
+"button \\button 64;.  3) Drop a \\l;titanium cube\\u object\\titan; in the "
+"center of the \\l;bot factory\\u object\\factory; and build a \\l;tracked "
+"grabber\\u object\\botgc;.  4) Power and radio-control the \\l;tracked "
+"grabber\\u object\\botgc; to the top of the southwest-oriented mountain.  5) "
+"Bring the black box back aboard your spaceship.  6) Don't forget to take the "
+"\\l;wheeled grabber\\u object\\botgr; along. These bots may prove very "
+"useful in the future.  7) Climb aboard the \\l;spaceship\\u object\\base;.  "
+"11) Select the \\l;spaceship\\u object\\base; and take off \\button 28;."
+msgstr ""
+
+#. type: Plain text
+#: help/mhterre3.txt:20
+msgid ""
+"Please note: To work more efficiently, you can use the \\l;wheeled "
+"grabber\\u object\\botgr;."
+msgstr ""
+
+#. type: Plain text
+#: help/msterre1.txt:3
+msgid "\\b;Walkthrough To find the survival kit from your starting point :"
+msgstr ""
+
+#. type: Bullet: '1) '
+#: help/msterre1.txt:7
+msgid "Follow the road heading south."
+msgstr ""
+
+#. type: Bullet: '2) '
+#: help/msterre1.txt:7
+msgid "Turn east (left) at the first crossroad."
+msgstr ""
+
+#. type: Bullet: '3) '
+#: help/msterre1.txt:7
+msgid ""
+"The survival kit is lying between the northern wall of Mission Control and "
+"the first tree on the right hand side of the road."
+msgstr ""
+
+#. type: Plain text
+#: help/msterre1.txt:9
+msgid "Just position yourself close to it to successfully complete the drill."
+msgstr ""
+
+#. type: Plain text
+#: help/msterre2.txt:3
+msgid ""
+"\\b;Walkthrough Walk down the street that runs beside \\l;Mission Control\\u "
+"object\\Huston;. You will find a \\l;titanium cube\\u object\\titan; on the "
+"left hand side of the road, right after the \\l;grabber bot\\u "
+"object\\botgr;."
+msgstr ""
+
+#. type: Bullet: '1) '
+#: help/msterre2.txt:7
+msgid ""
+"Face the cube. Click on the first button at the bottom left of your screen: "
+"\\button 163; <build a \\l;research center\\u object\\research;>."
+msgstr ""
+
+#. type: Bullet: '2) '
+#: help/msterre2.txt:7
+msgid ""
+"Walk further down the road. The second cube is on the right past the four "
+"green \\l;power cells\\u object\\power;."
+msgstr ""
+
+#. type: Bullet: '3) '
+#: help/msterre2.txt:7
+msgid ""
+"Repeat 1) but click on the second button: \\button 160; <build a \\l;bot "
+"factory\\u object\\factory;>."
+msgstr ""
+
+#. type: Plain text
+#: help/msterre2.txt:9
+msgid "As soon as both buildings are completed, the mission is at an end."
+msgstr ""
+
+#. type: Plain text
+#: help/msterre3.txt:3
+msgid ""
+"\\b;Walkthrough Before taking off, you need to bring the following aboard "
+"your spaceship:"
+msgstr ""
+
+#. type: Bullet: '1) '
+#: help/msterre3.txt:7
+msgid "\\l;Black box\\u object\\bbox;."
+msgstr ""
+
+#. type: Bullet: '2) '
+#: help/msterre3.txt:7
+msgid "\\l;Wheeled\\u object\\botgr; and \\l;tracked\\u object\\botgc; grabbers."
+msgstr ""
+
+#. type: Bullet: '3) '
+#: help/msterre3.txt:7
+msgid "\\l;Yourself\\u object\\human;."
+msgstr ""
+
+#. type: Plain text
+#: help/msterre3.txt:20
+msgid ""
+"Here is a detailed breakdown of the operations: 1) Power the \\l;research "
+"center\\u object\\research; with one of the green \\l;power cells\\u "
+"object\\power;.  2) Activate the \\l;research center\\u object\\research; "
+"then click on the \\button 64; <tracked bot research program> button.  3) "
+"Place a \\l;titanium cube\\u object\\titan; inside the \\l;bot factory\\u "
+"object\\factory;.  4) Step back out and activate the \\l;bot factory\\u "
+"object\\factory;.  5) Click on the \\button 138; <build a \\l;tracked "
+"grabber\\u object\\botgc;> button.  6) Power the \\l;tracked grabber\\u "
+"object\\botgc; with a brand new \\l;power cell\\u object\\power;.  7) "
+"Radio-control the \\l;tracked grabber\\u object\\botgc; to the top of the "
+"mountain in the south-west.  8) Bring the \\l;black box\\u object\\bbox; "
+"back aboard your \\l;spaceship\\u object\\base;.  9) Radio-control both the "
+"\\l;tracked\\u object\\botgc; and the \\l;wheeled\\u object\\botgr; grabbers "
+"onto the platform.  10) Climb aboard the \\l;spaceship\\u object\\base; "
+"yourself.  11) Take off!"
+msgstr ""
+
+#. type: Plain text
+#: help/msterre3.txt:22
+msgid ""
+"In order to take off, select the \\l;spaceship\\u object\\base;, provided "
+"that it is visible, by clicking on it. If it is not visible, you need to "
+"click one of the buttons in the upper left corner of your screen. The blue "
+"triangle \\button 130; allows you to alternate between symbols for bots and "
+"symbols for buildings. Click once to shift to the <buildings> list. A "
+"\\button 171; <spaceship> symbol will now appear. Click on the button to "
+"select it."
+msgstr ""
+
+#. type: Plain text
+#: help/msterre3.txt:24
+msgid ""
+"Once the spaceship is selected, click on the larger \\button 28; <takeoff> "
+"button in the lower center of your screen. If the objects mentioned above as "
+"well as yourself are indeed standing on deck, takeoff will take place."
+msgstr ""
+
+#. type: Plain text
+#: help/msterre3.txt:26
+msgid "No object or bot should hinder the closing of the eight large panel doors."
 msgstr ""

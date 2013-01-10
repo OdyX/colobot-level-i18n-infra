@@ -14,9 +14,12 @@ message(STATUS "Will install '${LEVEL_LONGNAME}' (${LEVEL_CODENAME}) to ${LEVEL_
 # Translate translatable material
 find_program(PO4A po4a)
 
-#### STEP 1 # Extract strings from level files, create .xml and .part-xhtml files out of them
 file(GLOB levelfiles "${CMAKE_CURRENT_SOURCE_DIR}/levels/*.txt")
 list(SORT levelfiles)
+file(GLOB helpfiles "${CMAKE_CURRENT_SOURCE_DIR}/help/*.txt")
+list(SORT helpfiles)
+
+#### STEP 1 # Extract strings from level files, create .xml and .part-xhtml files out of them
 add_custom_target(extract_strings) # For .xml files
 foreach(levelfile ${levelfiles})
 	get_filename_component(_levelfile_we ${levelfile} NAME_WE)
@@ -58,15 +61,16 @@ add_custom_command(OUTPUT common.xhtml
 
 #### STEP 3 # Create po4a.cfg file out of the list of files
 add_custom_command(OUTPUT po4a.cfg
-		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/03_create_po4a_file.sh ${CMAKE_CURRENT_SOURCE_DIR}/po ${extract_strings_po4alist} > po4a.cfg
+		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/03_create_po4a_file.sh ${CMAKE_CURRENT_SOURCE_DIR} po levels help > ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg
 		COMMENT "Create po4a file"
 		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 		)
 
 if(PO4A)
+	find_program(PO4A_GETTEXTIZE po4a-gettextize)
 	### STEP 4 # Update PO
 	add_custom_command(OUTPUT update-po-ran
-			   COMMAND po4a-gettextize -M UTF-8 -f xhtml -m common.xhtml > ${CMAKE_CURRENT_SOURCE_DIR}/po/level.pot
+			   COMMAND ${PO4A_GETTEXTIZE} -M UTF-8 -f xhtml -m common.xhtml > ${CMAKE_CURRENT_SOURCE_DIR}/po/level.pot
 			   COMMAND touch update-po-ran
 			   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/common.xhtml
 			   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
@@ -75,7 +79,7 @@ if(PO4A)
 
 	#### STEP 5 # Run po4a
 	add_custom_command(OUTPUT po4a-ran
-			   COMMAND po4a -v -f po4a.cfg
+			   COMMAND ${PO4A} -v -f ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg
 			   COMMAND touch po4a-ran
 			   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg ${extract_strings_catlist} update-po-ran
 			   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
