@@ -20,27 +20,16 @@ file(GLOB helpfiles "${CMAKE_CURRENT_SOURCE_DIR}/help/*.txt")
 list(SORT helpfiles)
 
 #### STEP 1 # Extract strings from level files, create .xml and .part-xhtml files out of them
-add_custom_target(extract_strings) # For .xml files
 foreach(levelfile ${levelfiles})
 	get_filename_component(_levelfile_we ${levelfile} NAME_WE)
 	get_filename_component(_levelfile    ${levelfile} NAME)
-	add_custom_command(OUTPUT ${_levelfile_we}.xml ${_levelfile_we}.part-xhtml
-		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/01_extract_strings_to_xml.sh ${levelfile} ${_levelfile_we}.xml ${_levelfile_we}.part-xhtml
-		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-		COMMENT "Extract strings from ${levelfile}"
-		)
-	add_custom_target(extract_strings_${_levelfile_we} DEPENDS ${_levelfile_we}.xml)
-	add_dependencies(extract_strings extract_strings_${_levelfile_we})
 
-	set(extract_strings_catlist ${extract_strings_catlist} ${_levelfile_we}.part-xhtml)
-	set(extract_strings_po4alist ${extract_strings_po4alist} ${_levelfile_we})
-
-	### STEP 5 # Inject translations in levels
+	### STEP 3 # Inject translations in levels
 	set(_levels_i18n_target "levels_i18n")
 	if(PO4A)
 		add_custom_command(OUTPUT ${_levels_i18n_target}/${_levelfile}
 			COMMAND mkdir -p ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}
-			COMMAND ./scripts/05_inject_translations.sh ${levelfile} ${CMAKE_CURRENT_BINARY_DIR}/${_levelfile_we} > ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}/${_levelfile}
+			COMMAND ./scripts/03_inject_translations.sh ${levelfile} ${CMAKE_CURRENT_BINARY_DIR}/levels/${_levelfile_we} > ${CMAKE_CURRENT_BINARY_DIR}/${_levels_i18n_target}/${_levelfile}
 			DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/po4a-ran
 			WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 			COMMENT "Inject translation in ${_levelfile}"
@@ -51,37 +40,19 @@ foreach(levelfile ${levelfiles})
 	endif()
 endforeach()
 
-#### STEP 2 # Create common XHTML file out of .part-xhtml files
-add_custom_command(OUTPUT common.xhtml
-		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/02_create_common_xhtml_file.sh ${extract_strings_catlist} > common.xhtml
-		DEPENDS ${extract_strings_catlist}
-		COMMENT "Create common.xhtml file from partial xhtml files"
-		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-		)
-
-#### STEP 3 # Create po4a.cfg file out of the list of files
+#### STEP 1 # Create po4a.cfg file out of the list of files
 add_custom_command(OUTPUT po4a.cfg
-		COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/03_create_po4a_file.sh ${CMAKE_CURRENT_SOURCE_DIR} po levels help > ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg
+	COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/01_create_po4a_file.sh ${CMAKE_CURRENT_SOURCE_DIR} po levels help > ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg
 		COMMENT "Create po4a file"
 		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 		)
 
 if(PO4A)
-	find_program(PO4A_GETTEXTIZE po4a-gettextize)
-	### STEP 4 # Update PO
-	add_custom_command(OUTPUT update-po-ran
-			   COMMAND ${PO4A_GETTEXTIZE} -M UTF-8 -f xhtml -m common.xhtml > ${CMAKE_CURRENT_SOURCE_DIR}/po/level.pot
-			   COMMAND touch update-po-ran
-			   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/common.xhtml
-			   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-			   COMMENT "Update level.pot from level's common.xhtml file.")
-	add_custom_target(update-po DEPENDS update-po-ran)
-
-	#### STEP 5 # Run po4a
+	#### STEP 2 # Run po4a
 	add_custom_command(OUTPUT po4a-ran
-			   COMMAND ${PO4A} -v -f ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg
+			   COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/scripts/02_run_po4a.sh ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg
 			   COMMAND touch po4a-ran
-			   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg ${extract_strings_catlist} update-po-ran
+			   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/po4a.cfg
 			   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 			   COMMENT "Run po4a to generate the translations out of the xml files")
 	add_custom_target(po4a DEPENDS po4a-ran)

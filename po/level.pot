@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2013-01-10 08:53+0100\n"
+"POT-Creation-Date: 2013-01-11 13:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,78 +16,58 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. type: Content of: <scene100><Title_text>
-#: scene100.xml:2
+#. type: One-char language identifier
+#: charLangID charLangID charLangID charLangID
 #, no-wrap
-msgid "scene100:Leaving Earth"
+msgid "E"
 msgstr ""
 
-#. type: Content of: <scene100><Title_resume>
-#: scene100.xml:3
+#. type: Title-text
+#: levels/scene100.txt:1
 #, no-wrap
-msgid "scene100:Earth"
+msgid "Leaving Earth"
 msgstr ""
 
-#. type: Content of: <scene100><ScriptName_resume>
-#: scene100.xml:4 scene100.xml:5 scene100.xml:6 scene100.xml:7
+#. type: Title-resume
+#: levels/scene100.txt:1
 #, no-wrap
-msgid "scene100:"
+msgid "Earth"
 msgstr ""
 
-#. type: Content of: <scene101><Title_text>
-#: scene101.xml:2
+#. type: Title-text
+#: levels/scene101.txt:1
 #, no-wrap
-msgid "scene101:Equipment"
+msgid "Equipment"
 msgstr ""
 
-#. type: Content of: <scene101><ScriptName_resume>
-#: scene101.xml:3 scene101.xml:5 scene101.xml:6 scene101.xml:7
+#. type: Resume-text
+#: levels/scene101.txt:2
 #, no-wrap
-msgid "scene101:"
+msgid "Prepare yourself to embark on mankind's most thrilling adventure yet."
 msgstr ""
 
-#. type: Content of: <scene101><Resume_text>
-#: scene101.xml:4
+#. type: Title-text
+#: levels/scene102.txt:1
 #, no-wrap
-msgid ""
-"scene101:Prepare yourself to embark on mankind's most thrilling adventure "
-"yet."
+msgid "Building"
 msgstr ""
 
-#. type: Content of: <scene102><Title_text>
-#: scene102.xml:2
+#. type: Resume-text
+#: levels/scene102.txt:2
 #, no-wrap
-msgid "scene102:Building"
+msgid "Learn how to construct buildings."
 msgstr ""
 
-#. type: Content of: <scene102><ScriptName_resume>
-#: scene102.xml:3 scene102.xml:5 scene102.xml:6 scene102.xml:7
+#. type: Title-text
+#: levels/scene103.txt:1
 #, no-wrap
-msgid "scene102:"
+msgid "Departure"
 msgstr ""
 
-#. type: Content of: <scene102><Resume_text>
-#: scene102.xml:4
+#. type: Resume-text
+#: levels/scene103.txt:2
 #, no-wrap
-msgid "scene102:Learn how to construct buildings."
-msgstr ""
-
-#. type: Content of: <scene103><Title_text>
-#: scene103.xml:2
-#, no-wrap
-msgid "scene103:Departure"
-msgstr ""
-
-#. type: Content of: <scene103><ScriptName_resume>
-#: scene103.xml:3 scene103.xml:5 scene103.xml:6 scene103.xml:7
-#, no-wrap
-msgid "scene103:"
-msgstr ""
-
-#. type: Content of: <scene103><Resume_text>
-#: scene103.xml:4
-#, no-wrap
-msgid "scene103:Equip your spaceship and get ready for takeoff."
+msgid "Equip your spaceship and get ready for takeoff."
 msgstr ""
 
 #. type: Plain text

@@ -12,10 +12,14 @@ helpdir=$4 # relative
 ln -sf $srcdir/$po_directory $po_directory
 echo "[po_directory] $po_directory"
 
+# Create symlink for relative paths in po4a
+mkdir -p $leveldir
+
 # Levels are precompiled, they are already in the current dir
 for scene in $(cd $srcdir/$leveldir; ls *.txt); do
 	scene_=$(basename $scene .txt)
-	echo "[type:xml] $scene_.xml \$lang:$scene_.\$lang.xml"
+	$(cd $leveldir; ln -sf $srcdir/$leveldir/$scene $scene)
+	echo "[type:colobotlevel] $leveldir/$scene \$lang:$leveldir/$scene_.\$lang.txt"
 done
 
 # Create symlink for relative paths in po4a
