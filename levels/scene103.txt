@@ -1,5 +1,5 @@
-Title.E text="Departure"
-Resume.E text="Equip your spaceship and get ready for takeoff."
+Title.E      text="Departure"
+Resume.E     text="Equip your spaceship and get ready for takeoff."
 Instructions name="mhterre3.txt"
 SoluceFile   name="msterre3.txt"
 HelpFile     name="cbot.txt"
