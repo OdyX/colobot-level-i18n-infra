@@ -68,7 +68,7 @@ sub parse {
             $spacing_2 =~ s/\n/\\n/g;
 
             # Now push the result
-            $self->pushline($type.'.'.$parE.$spacing_1.$subtype_1.'"'.$par_1.'"'.$spacing_2."\n");
+            $self->pushline($type.'.'.$parE.$spacing_1.$subtype_1.'="'.$par_1.'"'.$spacing_2."\n");
         }
         else
         {
