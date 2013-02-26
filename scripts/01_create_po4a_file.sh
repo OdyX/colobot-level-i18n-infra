@@ -28,5 +28,5 @@ mkdir -p $helpdir
 for helpfile in $(cd $srcdir/$helpdir; ls *.txt); do
 	helpfile_=$(basename $helpfile .txt)
 	$(cd $helpdir; ln -sf $srcdir/$helpdir/$helpfile $helpfile)
-	echo "[type:text] $helpdir/$helpfile \$lang:$helpdir/$helpfile_.\$lang.txt"
+	echo "[type:colobothelp] $helpdir/$helpfile \$lang:$helpdir/$helpfile_.\$lang.txt"
 done
